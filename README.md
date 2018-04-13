@@ -1,20 +1,12 @@
 # facebookads
 ## Configuração
-É necessário criar um arquivo `config.py` colocando os dados necessários do **Facebook Ads**
-### Arquivo config.py
+É necessário configurar as variáveis dentro do arquivo `__init__.py` substituindo os valores dentro das aspas simples ('') com os dados do **Facebook Ads**:
+### Variáveis
 ```
-class Config (object):
-  def app_id:
-    return "<app_id>"
-
-  def app_secret:
-    return "<app_secret>"
-
-  def access_token:
-    return "<access_token>"
-
-  def account_id:
-    return "<account_id>"
+my_app_id = '<my_app_id>'
+my_app_secret = '<my_app_secret>'
+my_access_token = '<my_access_token>'
+account_id = "<account_id>"
 ```
 
 ## Execução
