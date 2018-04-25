@@ -144,65 +144,63 @@ for ad in ad_iter:
                 "clicks": insight.get("clicks"),
                 "social_clicks": insight.get("social_clicks"),
                 "inline_post_engagement": insight.get("inline_post_engagement") if insight.get("inline_post_engagement") else None,
-                "video_10_sec_watched_actions": insight.get("video_10_sec_watched_actions") if insight.get("video_10_sec_watched_actions") else None,
-                "video_30_sec_watched_actions": insight.get("video_30_sec_watched_actions") if insight.get("video_30_sec_watched_actions") else None,
-                "video_avg_percent_watched_actions": insight.get("video_avg_percent_watched_actions") if insight.get("video_avg_percent_watched_actions") else None,
-                "video_avg_time_watched_actions": insight.get("video_avg_time_watched_actions") if insight.get("video_avg_time_watched_actions") else None,
-                "video_p100_watched_actions": insight.get("video_p100_watched_actions") if insight.get("video_p100_watched_actions") else None,
-                "video_p25_watched_actions": insight.get("video_p25_watched_actions") if insight.get("video_p25_watched_actions") else None,
-                "video_p50_watched_actions": insight.get("video_p50_watched_actions") if insight.get("video_p50_watched_actions") else None,
-                "video_p75_watched_actions": insight.get("video_p75_watched_actions") if insight.get("video_p75_watched_actions") else None,
-                "video_p95_watched_actions": insight.get("video_p95_watched_actions") if insight.get("video_p95_watched_actions") else None,
+                "video_10_sec_watched_actions": insight.get("video_10_sec_watched_actions")[0].get('value') if insight.get("video_10_sec_watched_actions") else None,
+                "video_30_sec_watched_actions": insight.get("video_30_sec_watched_actions")[0].get('value') if insight.get("video_30_sec_watched_actions") else None,
+                "video_avg_percent_watched_actions": insight.get("video_avg_percent_watched_actions")[0].get('value') if insight.get("video_avg_percent_watched_actions") else None,
+                "video_avg_time_watched_actions": insight.get("video_avg_time_watched_actions")[0].get('value') if insight.get("video_avg_time_watched_actions") else None,
+                "video_p100_watched_actions": insight.get("video_p100_watched_actions")[0].get('value') if insight.get("video_p100_watched_actions") else None,
+                "video_p25_watched_actions": insight.get("video_p25_watched_actions")[0].get('value') if insight.get("video_p25_watched_actions") else None,
+                "video_p50_watched_actions": insight.get("video_p50_watched_actions")[0].get('value') if insight.get("video_p50_watched_actions") else None,
+                "video_p75_watched_actions": insight.get("video_p75_watched_actions")[0].get('value') if insight.get("video_p75_watched_actions") else None,
+                "video_p95_watched_actions": insight.get("video_p95_watched_actions")[0].get('value') if insight.get("video_p95_watched_actions") else None,
             })
 
 
 
 # print(ads)
-
-header = ["date_stop",
-          "campaign_id",
-          "campaign_name",
-          "adset_id",
-          "adset_name",
-          "ad_id", 
-          "ad_name", 
-          "device_platform",
-          "configured_status", 
-          "reach",
-          "frequency",
-          "impressions",
-          "unique_clicks",
-          "spend",
-          "cpc",
-          "cpm",
-          "cpp",
-          "ctr",
-          "clicks",
-          "social_clicks",
-          "inline_post_engagement",
-          "video_10_sec_watched_actions",
-          "video_30_sec_watched_actions",
-          "video_avg_percent_watched_actions",
-          "video_avg_time_watched_actions",
-          "video_p100_watched_actions",
-          "video_p25_watched_actions",
-          "video_p50_watched_actions",
-          "video_p75_watched_actions",
-          "video_p95_watched_actions",
-          "video_p95_watched_actions",
-          "data_source",
-          "extraction_date"
-          ]
+# header = ["date_stop",
+#           "campaign_id",
+#           "campaign_name",
+#           "adset_id",
+#           "adset_name",
+#           "ad_id", 
+#           "ad_name", 
+#           "device_platform",
+#           "configured_status", 
+#           "reach",
+#           "frequency",
+#           "impressions",
+#           "unique_clicks",
+#           "spend",
+#           "cpc",
+#           "cpm",
+#           "cpp",
+#           "ctr",
+#           "clicks",
+#           "social_clicks",
+#           "inline_post_engagement",
+#           "video_10_sec_watched_actions",
+#           "video_30_sec_watched_actions",
+#           "video_avg_percent_watched_actions",
+#           "video_avg_time_watched_actions",
+#           "video_p100_watched_actions",
+#           "video_p25_watched_actions",
+#           "video_p50_watched_actions",
+#           "video_p75_watched_actions",
+#           "video_p95_watched_actions",
+#           "data_source",
+#           "extraction_date"
+#           ]
 
 print("===========================================")
 print("Gerando relatório...")
 print("===========================================")
 
-with open('example.csv', 'w', newline='', encoding="utf-8") as csvfile:
+with open('example.csv', 'a', newline='') as csvfile:
     spamwriter = csv.writer(csvfile)
-    spamwriter.writerow(header)
+    # spamwriter.writerow(header)
     for ad in ads:
-        spamwriter.writerow([ad['date_stop'],
+        spamwriter.writerow([yesterday.strftime('%d/%m/%Y'),
                             ad['campaign_id'],
                             ad['campaign_name'],
                             ad['adset_id'],
@@ -232,9 +230,8 @@ with open('example.csv', 'w', newline='', encoding="utf-8") as csvfile:
                             ad['video_p50_watched_actions'],
                             ad['video_p75_watched_actions'],
                             ad['video_p95_watched_actions'],
-                            ad['video_p95_watched_actions'],
                             'Facebook Ads',
-                            now.strftime("%Y-%m-%d %H:%M"),
+                            now.strftime("%d/%m/%Y %H:%M"),
                             ])
 
 print("===========================================")
